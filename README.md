@@ -1,5 +1,5 @@
-# TeamGG
-Team oriented minecraft pvp suite
+# TeamGG+
+Team oriented minecraft pvp suite maintaned by Pear
 
 ## Project Goals
 
