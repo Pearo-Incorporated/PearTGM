@@ -139,8 +139,8 @@ public class CycleCommands {
         }
     }
 
-    @Command(aliases = {"end"}, desc = "End the match.")
-    @CommandPermissions({"tgm.end"})
+    @Command(aliases = {"endmatch"}, desc = "End the match.")
+    @CommandPermissions({"tgm.endmatch"})
     public static void end(CommandContext cmd, CommandSender sender) {
         MatchStatus matchStatus = TGM.get().getMatchManager().getMatch().getMatchStatus();
         if (matchStatus == MatchStatus.MID) {
@@ -427,7 +427,7 @@ public class CycleCommands {
 
         if (!autoJoin) {
             if (!player.hasPermission("tgm.pickteam")) {
-                player.sendMessage(ChatColor.LIGHT_PURPLE + "Only premium users can pick their team! Purchase a rank at http://warzone.store/");
+                player.sendMessage(ChatColor.RED + "Only premium users can pick their team!");
                 return;
             }
         }
