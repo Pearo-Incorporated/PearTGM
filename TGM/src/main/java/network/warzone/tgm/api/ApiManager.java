@@ -37,14 +37,15 @@ public class ApiManager implements Listener {
 
     public ApiManager() {
         this.serverId = new ObjectId();
-        long startedAt = System.currentTimeMillis();
         TGM.registerEvents(this);
 
         Bukkit.getScheduler().runTaskTimerAsynchronously(TGM.get(), () -> {
             List<String> players = new ArrayList<>();
+            List<String> playerNames = new ArrayList<>();
             for (PlayerContext playerContext : TGM.get().getPlayerManager().getPlayers()) {
                 try {
-                    players.add(playerContext.getUserProfile().getName());
+                    players.add(playerContext.getUserProfile().getId().toString());
+                    playerNames.add(playerContext.getUserProfile().getName());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -65,12 +66,12 @@ public class ApiManager implements Listener {
                     TGM.get().getConfig().getString("server.name"),
                     TGM.get().getConfig().getString("server.id"),
                     players,
+                    playerNames,
                     playerCount,
                     spectatorCount,
                     maxPlayers,
                     TGM.get().getMatchManager().getMatch().getMapContainer().getMapInfo().getName(),
                     TGM.get().getMatchManager().getMatch().getMapContainer().getMapInfo().getGametype().getName(),
-                    startedAt,
                     serverId
             );
             TGM.get().getTeamClient().heartbeat(heartbeat);
